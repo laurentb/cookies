@@ -869,8 +869,8 @@ class Cookie(object):
             value = renderer(value)
         return '; '.join(
             ['{0}={1}'.format(name, value)] +
-            [key if isinstance(value, bool) else '='.join((key, value))
-             for key, value in self.attributes().items()]
+            [key if isinstance(val, bool) else '='.join((key, val))
+             for key, val in self.attributes().items()]
         )
 
     def __eq__(self, other):
