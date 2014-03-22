@@ -968,6 +968,9 @@ class Cookies(dict):
     stored in the dict, and render the set in formats suitable for HTTP request
     or response headers.
     """
+
+    COOKIE_CLASS = Cookie
+
     def __init__(self, *args, **kwargs):
         dict.__init__(self)
         self.all_cookies = []
@@ -990,7 +993,7 @@ class Cookies(dict):
                 continue
             self[cookie.name] = cookie
         for key, value in kwargs.items():
-            cookie = Cookie(key, value)
+            cookie = self.COOKIE_CLASS(key, value)
             self.all_cookies.append(cookie)
             if key in self:
                 continue
